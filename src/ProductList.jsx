@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
+import { addItem } from './CartSlice';
+import { useDispatch } from 'react-redux';
+
+
 function ProductList({ onHomeClick }) {
+    const dispatch = useDispatch();
+
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-
+    const [addedToCart,setAddedToCart]=useState({})
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -218,7 +224,7 @@ function ProductList({ onHomeClick }) {
         padding: '15px',
         display: 'flex',
         justifyContent: 'space-between',
-        alignIems: 'center',
+        alignItems: 'center',
         fontSize: '20px',
     }
     const styleObjUl = {
@@ -247,6 +253,12 @@ function ProductList({ onHomeClick }) {
         setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
         setShowCart(false); // Hide the cart when navigating to About Us
     };
+
+    const handleAddToCart=(product)=>{
+        dispatch(addItem(product));
+
+        setAddedToCart((prevState)=>({...prevState,[product.name]:true}))
+    }
 
     const handleContinueShopping = (e) => {
         e.preventDefault();
@@ -293,7 +305,7 @@ function ProductList({ onHomeClick }) {
                                                     <p className='product-description'>{plant.description}</p>
                                                     <div className='product-card-pricesection'>
                                                         <p className='product-price'>{plant.cost}</p>
-                                                        <button className='product-button'>Add to cart</button> 
+                                                        <button className='product-button'  onClick={() => handleAddToCart(plant)}>Add to cart</button> 
                                                     </div>   
                                                 </div> 
                                             </div>
