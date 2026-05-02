@@ -1,1 +1,2 @@
 # coding-project-template
+e-PlantShopping is a web application designed with a strong focus on user friendliness, making it easy for anyone to browse and purchase plants online. The interface is clean, simple, and intuitive, allowing users to quickly explore different plant categories, view details, and add items to their cart without confusion. With responsive design and smooth navigation, the application ensures a consistent and enjoyable experience across both desktop and mobile devices. 
